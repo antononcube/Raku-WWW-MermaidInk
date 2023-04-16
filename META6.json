@@ -1,0 +1,30 @@
+{
+  "name": "WWW::MermaidInk",
+  "description": "Get image corresponding to Mermaid-js specifications via the web Mermaid-ink interface of Mermaid-js.",
+  "version": "0.1.0",
+  "perl": "6.*",
+  "authors": [
+    "Anton Antonov"
+  ],
+  "auth": "zef:antononcube",
+  "depends": [
+    "HTTP::Tiny:ver<0.2.5+>",
+    "Base64:ver<0.1.0>"
+  ],
+  "build-depends": [],
+  "test-depends": [],
+  "provides": {
+    "WWW::MermaidInk": "lib/WWW/MermaidInk.rakumod"
+  },
+  "resources": [],
+  "license": "Artistic-2.0",
+  "tags": [
+    "mermaid",
+    "mermaid-js",
+    "mermaid-ink",
+    "web service",
+    "web"
+  ],
+  "api": "1",
+  "source-url": "https://github.com/antononcube/Raku-WWW-MermaidInk"
+}
