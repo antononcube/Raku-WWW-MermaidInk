@@ -7,7 +7,7 @@ unit module WWW::MermaidInk;
 
 proto sub mermaid-ink(Str $spec, |) is export {*}
 
-multi sub mermaid-ink(Str $spec, :$file is copy = '') {
+multi sub mermaid-ink(Str $spec, :$file is copy = '', Str :$format = 'asis') {
 
     # Process file
     if $file.isa(Whatever) { $file = $*CWD ~ '/out.png'; }
@@ -25,10 +25,18 @@ multi sub mermaid-ink(Str $spec, :$file is copy = '') {
         spurt $file, $resp.<content>;
     }
 
-    return $resp;
+    given $format {
+        when $_.lc ∈ <base64 b64_json> {
+            return $resp.<content>.&encode-base64(:str);
+        }
+        when $_.lc ∈ <md-image image-md markdonw> {
+            return '![](data:image/png;base64,' ~ $resp.<content>.&encode-base64(:str) ~ ')';
+        }
+        default { return $resp; }
+    }
 }
 
-multi sub mermaid-ink(@edges where @edges.all ~~ Pair, :$file is copy = '', :$directive is copy = Whatever ) {
+multi sub mermaid-ink(@edges where @edges.all ~~ Pair, :$file is copy = '', Str :$format = 'asis', :$directive is copy = Whatever ) {
     my $spec = 'graph';
     if $directive ~~ Str {
         $spec ~= " $directive";
@@ -38,5 +46,5 @@ multi sub mermaid-ink(@edges where @edges.all ~~ Pair, :$file is copy = '', :$di
         $spec ~= "\n{$e.key} --> {$e.value}";
     }
 
-    return mermaid-ink($spec, :$file);
+    return mermaid-ink($spec, :$file, :$format);
 }
