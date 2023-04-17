@@ -1,6 +1,6 @@
 {
   "name": "WWW::MermaidInk",
-  "description": "Get image corresponding to Mermaid-js specifications via the web Mermaid-ink interface of Mermaid-js.",
+  "description": "Get images corresponding to Mermaid-js specifications via the web Mermaid-ink interface of Mermaid-js.",
   "version": "0.1.0",
   "perl": "6.*",
   "authors": [

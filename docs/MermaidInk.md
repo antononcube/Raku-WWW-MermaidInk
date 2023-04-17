@@ -316,7 +316,7 @@ graph TD
     MI --> |spec|MS
     MS --> |image|MI
     MI --> MDOC -.- MDnb
-    WLnb -.- Raku
+    MDnb -.- Raku
 END
 
 mermaid-ink($spec, format=>'md-image')    
