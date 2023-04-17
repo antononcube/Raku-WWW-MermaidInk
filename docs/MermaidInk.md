@@ -1,7 +1,7 @@
 # MermaidInk
 
 The function `mermaid-ink` of the Raku package ["WWW::MermaidInk"](https://github.com/antononcube/Raku-WWW-MermaidInk)
-gets images corresponding to a Mermaid-js specifications via the web [Mermaid-ink](https://mermaid.ink) interface of [Mermaid-js](https://mermaid.js.org).
+gets images corresponding to Mermaid-js specifications via the web [Mermaid-ink](https://mermaid.ink) interface of [Mermaid-js](https://mermaid.js.org).
 
 ----
 
@@ -229,14 +229,23 @@ mermaid-ink($spec, format=>'md-image')
 
 The option "directives" is used when the first argument is a list of pairs:
 
-```raku, results=asis
-SeedRandom[1];
-Block[{gr = RandomGraph[{5, 6}]}, 
-  Association[# -> my $spec = q:to/END/; gr, "MermaidDirectives" -> #] & /@ {"TB", "TD", "BT", "RL", "LR"}] 
- ]
+```perl6, results=asis
+my @edges2 = [1 => '2', 1 => '3', 2 => '3', 2 => '4', 3 => '4', 4 => '5'];
+my @imgResB64 = |<TB TD BT RL LR>.map({ mermaid-ink(@edges2, directive => $_, format => 'md-image') });
+
+@imgResB64.join("\n\n")        
 ```
 
 The meaning of Mermaid's flowchart orientation directives are given in the following table:
+
+| Directive | Meaning        |
+|-----------|----------------|
+| TB        | top to bottom  |
+| TD        | top-down       |
+| BT        | bottom to top  |
+| RL        | right to left  |
+| LR        | left to right  |
+
 
 ------
 
@@ -250,8 +259,7 @@ graph TD
     WL[Make a Mathematica notebook] --> E
     E["Examine notebook(s)"] --> M2MD
     M2MD["Convert to Markdown with M2MD"] --> MG
-    MG["Convert to Mathematica with Markdown::Grammar"] --> \
-|Compare|E
+    MG["Convert to Mathematica with Markdown::Grammar"] --> |Compare|E
 END
 
 mermaid-ink($spec, format=>'md-image')    
