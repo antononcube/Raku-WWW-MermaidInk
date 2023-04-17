@@ -100,6 +100,16 @@ mermaid-ink(@edges, format=>'md-image')
 
 ------
 
+## Command Line Interface (CLI)
+
+The package provides the CLI script `mermaid-ink`. Here is its help message:
+
+```shell
+mermaid-ink --help
+```
+
+------
+
 ## Flowchart
 
 This flowchart summarizes the execution path of obtaining Mermaid images in a Markdown document:  
