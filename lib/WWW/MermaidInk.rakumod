@@ -32,6 +32,7 @@ multi sub mermaid-ink(Str $spec, :$file is copy = '', Str :$format = 'asis') {
         when $_.lc ∈ <md-image image-md markdonw> {
             return '![](data:image/png;base64,' ~ $resp.<content>.&encode-base64(:str) ~ ')';
         }
+        when $_.lc eq 'none' { }
         default { return $resp; }
     }
 }
