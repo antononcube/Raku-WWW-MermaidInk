@@ -1,0 +1,47 @@
+#!/usr/bin/env raku
+use v6.d;
+
+use WWW::MermaidInk;
+
+my %*SUB-MAIN-OPTS =
+        :named-anywhere,
+        # allow named variables at any location
+        ;
+
+#| Diagram image for Mermaid-JS spec (via mermaid.ink).
+multi sub mermaid-front(Str $spec,                         #= Mermaid-JS spec.
+                        Str :o(:$file) = '',               #= File to export the image to.
+                        Str :$format is copy = 'md-image', #= Format of the result; one of "asis", "base64", "md-image", or "none".
+                        ) {
+
+    if $spec.chars == 0 {
+        note 'Nothing.';
+        return;
+    }
+
+    my $res = mermaid-ink($spec, :$file, :$format);
+
+    if $format.lc ∈ <asis raku> {
+        say $res.raku;
+    } elsif $format.lc ne 'none' {
+        say $res;
+    }
+}
+
+#| Diagram image for Mermaid-JS spec (via mermaid.ink).
+
+multi sub MAIN(Str $spec,                         #= Mermaid-JS spec.
+               Str :o(:$file) = '',               #= File to export the image to.
+               Str :$format is copy = 'md-image', #= Format of the result; one of "asis", "base64", "md-image", or "none".
+               ) {
+    return mermaid-front($spec, :$file, :$format);
+}
+
+multi sub MAIN
+#= Command given as a sequence of words.
+(*@words,
+ Str :o(:$file) = '',               #= File to export the image to.
+ Str :$format is copy = 'md-image', #= Format of the result; one of "asis", "base64", "md-image", or "none".
+ ) {
+    return mermaid-front(@words.join(' ').Str, :$file, :$format);
+}
