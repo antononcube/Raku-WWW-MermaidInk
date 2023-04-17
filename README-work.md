@@ -3,6 +3,9 @@
 The function `mermaid-ink` of the Raku package ["WWW::MermaidInk"](https://github.com/antononcube/Raku-WWW-MermaidInk)
 gets images corresponding to Mermaid-js specifications via the web [Mermaid-ink](https://mermaid.ink) interface of [Mermaid-js](https://mermaid.js.org).
 
+For a "full set" of examples see the file
+[MermaidInk_woven.html](https://htmlpreview.github.io/?https://github.com/antononcube/Raku-WWW-MermaidInk/blob/main/docs/MermaidInk_woven.html).
+
 ----
 
 ## Usage
@@ -136,6 +139,21 @@ graph TD
 
 ## References
 
+### Articles
+
+[AA1] Anton Antonov,
+["Interactive Mermaid diagrams generation via Markdown evaluation"](https://rakuforprediction.wordpress.com/2022/11/22/interactive-mermaid-diagrams-generation-via-markdown-evaluation/),
+(2022),
+[RakuForPrediction at WordPress](https://rakuforprediction.wordpress.com).
+
+### Functions and packages
+
+[AAf1] Anton Antonov,
+[MermaidInk Mathematica resource function](https://www.wolframcloud.com/obj/antononcube/DeployedResources/Function/MermaidInk/),
+(2022-2023),
+[Wolfram Function Repository](https://resources.wolframcloud.com/FunctionRepository/).
+
+### Mermaid resources
 
 - [GitHub - mermaid-js/mermaid: Generation of diagram and flowchart from text in a similar manner as markdown](https://github.com/mermaid-js/mermaid)
 
